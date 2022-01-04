@@ -2,14 +2,15 @@
 // Created by evren on 4.01.2022.
 //
 
-#include <iostream>
 #include <fstream>
+#include <sstream>
 #include "parseFile.h"
 
 parseFile::parseFile(std::string filePath) {
     this->filePath = filePath;
     this->setCount();
-    this->getContent();
+    this->setContent();
+    this->setFieldSize();
 }
 
 void parseFile::setCount() {
@@ -21,7 +22,7 @@ void parseFile::setCount() {
     file.close();
 }
 
-void parseFile::getContent() {
+void parseFile::setContent() {
     std::ifstream file(this->filePath);
     std::string tempRow;
     int i = 0;
@@ -30,4 +31,13 @@ void parseFile::getContent() {
         i++;
     }
     file.close();
+}
+
+void parseFile::setFieldSize() {
+    std::stringstream stream(this->content[0]);
+    int i = 0;
+    while (stream.good() && i < 2){
+        stream >> this->fieldSize[i];
+        i++;
+    }
 }

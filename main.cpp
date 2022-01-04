@@ -1,38 +1,6 @@
 #include <iostream>
-#include <fstream>
 #include <sstream>
 #include "parseFile.h"
-
-int fileRowCount(std::string fileName) {
-    std::ifstream file(fileName);
-    std::string line;
-    int count = 0;
-    while (std::getline(file, line)) {
-        count++;
-    }
-    file.close();
-    return count;
-}
-
-void getFileContent(std::string fileDirectory, std::string content[]) {
-    std::ifstream file(fileDirectory);
-    std::string tempRow;
-    int i = 0;
-    while (std::getline(file, tempRow)) {
-        content[i] += tempRow + "\n";
-        i++;
-    }
-    file.close();
-}
-
-void getFieldSize(std::string row, int fieldSize[]) {
-    std::stringstream stream(row);
-    int i = 0;
-    while (stream.good() && i < 2){
-        stream >> fieldSize[i];
-        i++;
-    }
-}
 
 void decreaseAllFields(int** filedArea, int fieldSize[]) {
     for (int i = 0; i < fieldSize[0]; i++) {
@@ -73,15 +41,12 @@ int main() {
 
     // get the size of field from first row
 
-    int fieldSize[2];
-    std::string firstRow = parsedFile.content[0];
-    getFieldSize(firstRow, fieldSize);
 
     // create dynamic field array
 
-    int **fieldArea = (int**)calloc(fieldSize[0], sizeof(int*));
-    for (int i = 0; i < fieldSize[0]; i++) {
-        fieldArea[i] = (int*)calloc(fieldSize[1], sizeof(int));
+    int **fieldArea = (int**)calloc(parsedFile.fieldSize[0], sizeof(int*));
+    for (int i = 0; i < parsedFile.fieldSize[0]; i++) {
+        fieldArea[i] = (int*)calloc(parsedFile.fieldSize[1], sizeof(int));
     }
 
     // determine that the row includes area data or year data
@@ -98,7 +63,7 @@ int main() {
 
         // if 3rd or 4th is not set, it means that the row is year data
         if (tempRowData[2] == -1 || tempRowData[3] == -1) {
-            decreaseAllFields(fieldArea, fieldSize);
+            decreaseAllFields(fieldArea, parsedFile.fieldSize);
         } else {
             // process the data to field
 
@@ -110,10 +75,10 @@ int main() {
     }
 
     // decrease once again to get the final result
-    decreaseAllFields(fieldArea, fieldSize);
+    decreaseAllFields(fieldArea, parsedFile.fieldSize);
 
     // print the field
-    printFiled(fieldArea, fieldSize);
+    printFiled(fieldArea, parsedFile.fieldSize);
 
     return 0;
 }

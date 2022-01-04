@@ -11,11 +11,13 @@ public:
     int rowCount = 0;
     std::string content[1000];
     std::string filePath;
+    int fieldSize[2];
     parseFile(std::string path);
 
 private:
-    void getContent();
+    void setContent();
     void setCount();
+    void setFieldSize();
 };
 
 

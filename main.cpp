@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "parseFile.h"
 
 int fileRowCount(std::string fileName) {
     std::ifstream file(fileName);
@@ -68,14 +69,12 @@ int main() {
     fileDirectory = "C:\\Users\\evren\\Desktop\\finalProject\\fieldInfo1.txt";
 
     // read the file row by row
-
-    std::string content[1000];
-    getFileContent(fileDirectory, content);
+    parseFile parsedFile(fileDirectory);
 
     // get the size of field from first row
 
     int fieldSize[2];
-    std::string firstRow = content[0];
+    std::string firstRow = parsedFile.content[0];
     getFieldSize(firstRow, fieldSize);
 
     // create dynamic field array
@@ -88,10 +87,10 @@ int main() {
     // determine that the row includes area data or year data
     // and process the data accordingly
 
-    for (int i= 1; i < fileRowCount(fileDirectory); i++) {
+    for (int i= 1; i < parsedFile.rowCount; i++) {
         int tempRowData[4] = {-1, -1, -1, -1};
 
-        std::stringstream rowData(content[i]);
+        std::stringstream rowData(parsedFile.content[i]);
         for (int j = 0; j < 4; j++) {
             if (rowData.good())
                 rowData >> tempRowData[j];

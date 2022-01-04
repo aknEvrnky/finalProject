@@ -3,4 +3,4 @@ project(finalProject)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(finalProject main.cpp parseFile.cpp parseFile.h)
+add_executable(finalProject main.cpp parseFile.cpp parseFile.h field.cpp field.h)

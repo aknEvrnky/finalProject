@@ -1,11 +1,8 @@
-#include <iostream>
-#include "parseFile.h"
 #include "field.h"
-
 
 int main() {
 
-    // get file directory from user
+    // get file directory
     std::string fileDirectory = "C:\\Users\\evren\\Desktop\\finalProject\\fieldInfo1.txt";
 
     // read the file

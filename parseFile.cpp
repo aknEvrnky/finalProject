@@ -14,6 +14,7 @@ parseFile::parseFile(std::string filePath) {
 }
 
 void parseFile::setCount() {
+    // gets the number of lines in the file
     std::ifstream file(this->filePath);
     std::string tempRow;
     while (std::getline(file, tempRow)) {
@@ -23,6 +24,7 @@ void parseFile::setCount() {
 }
 
 void parseFile::setContent() {
+    // gets the content of the file
     std::ifstream file(this->filePath);
     std::string tempRow;
     int i = 0;
@@ -34,6 +36,7 @@ void parseFile::setContent() {
 }
 
 void parseFile::setFieldSize() {
+    // gets the size of the field in the file's first row
     std::stringstream stream(this->content[0]);
     int i = 0;
     while (stream.good() && i < 2){

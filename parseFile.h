@@ -4,6 +4,7 @@
 
 #ifndef FINALPROJECT_PARSEFILE_H
 #define FINALPROJECT_PARSEFILE_H
+
 #include <iostream>
 
 class parseFile {
@@ -13,7 +14,6 @@ public:
     std::string filePath;
     int fieldSize[2];
     parseFile(std::string path);
-
 private:
     void setContent();
     void setCount();

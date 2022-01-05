@@ -9,11 +9,9 @@
 
 class field {
 public:
-    int fieldSize[2];
     parseFile *parsedFile;
     field(parseFile *parsedFile);
     void renderMap();
-
 private:
     int** map;
     void createMapArray();

@@ -3,16 +3,16 @@
 int main() {
 
     // get file directory
-    std::string fileDirectory = "C:\\Users\\evren\\Desktop\\finalProject\\fieldInfo1.txt";
+    std::string fileDirectory = "../fieldInfo1.txt";
 
-    // read the file
+    // parse the file
     parseFile parsedFile(fileDirectory);
 
-    // create the field
-    field fieldArea(&parsedFile);
+    // create the field object from the parsed file
+    field tirednessField(&parsedFile);
 
     // render the map
-    fieldArea.renderMap();
+    tirednessField.renderMap();
 
     return 0;
 }

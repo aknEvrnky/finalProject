@@ -3,7 +3,8 @@
 int main() {
 
     // get file directory
-    std::string fileDirectory = "../fieldInfo1.txt";
+    std::string fileDirectory;
+    std::cin >> fileDirectory;
 
     // parse the file
     parseFile parsedFile(fileDirectory);
